@@ -1,0 +1,68 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.message {
+  display: flex;
+  gap: v.$space-4;
+  padding: v.$space-5 v.$space-6;
+  border-radius: v.$radius-lg;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  max-width: 36rem;
+  width: 100%;
+  animation: fade-in v.$transition-base both;
+}
+
+.message__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: v.$color-text-muted;
+  flex-shrink: 0;
+}
+
+.message__body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+}
+
+.message__title {
+  font-size: 1.05rem;
+  color: v.$color-text;
+}
+
+.message__text {
+  color: v.$color-text-muted;
+  font-size: 0.95rem;
+}
+
+.message--error {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.06);
+
+  .message__icon {
+    background: rgba(248, 113, 113, 0.18);
+    color: v.$color-danger;
+  }
+
+  .message__title {
+    color: v.$color-danger;
+  }
+}
+
+.message--empty {
+  border-style: dashed;
+  border-color: v.$color-border-strong;
+  background: transparent;
+
+  .message__icon {
+    background: rgba(151, 206, 76, 0.12);
+    color: v.$color-portal;
+  }
+}

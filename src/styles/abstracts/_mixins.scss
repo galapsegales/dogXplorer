@@ -1,10 +1,41 @@
-@use '../abstracts/variables' as *;
+@use '../abstracts/variables' as v;
 
-/* Mixins */
-@mixin reset-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+@mixin breakpoint($bp) {
+  @if $bp == tablet {
+    @media (min-width: v.$bp-tablet) {
+      @content;
+    }
+  } @else if $bp == tablethorizontal {
+    @media (min-width: v.$bp-tablet-horizontal) {
+      @content;
+    }
+  } @else if $bp == desktop {
+    @media (min-width: v.$bp-desktop) {
+      @content;
+    }
+  } @else if $bp == desktopxl {
+    @media (min-width: v.$bp-desktop-xl) {
+      @content;
+    }
+  }
 }
 
+@mixin focus-ring($color: v.$color-portal) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
 
+@mixin card-surface {
+  background: linear-gradient(180deg, v.$color-bg-elev 0%, v.$color-surface 100%);
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-md;
+}
+
+@mixin clamp-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

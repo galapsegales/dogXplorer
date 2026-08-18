@@ -1,5 +1,130 @@
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
 
 /* Buttons */
 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-5;
+  border-radius: v.$radius-md;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color v.$transition-fast, border-color v.$transition-fast,
+    transform v.$transition-fast, color v.$transition-fast, box-shadow v.$transition-fast;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, v.$color-portal 0%, v.$color-portal-dark 100%);
+  color: #08130b;
+  box-shadow: v.$shadow-sm;
+
+  &:hover {
+    background: linear-gradient(135deg, v.$color-portal-strong 0%, v.$color-portal 100%);
+    box-shadow: v.$shadow-glow;
+  }
+}
+
+.btn--secondary {
+  background: v.$color-surface;
+  color: v.$color-text;
+  border-color: v.$color-border-strong;
+
+  &:hover {
+    background: v.$color-surface-hi;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: v.$color-text-soft;
+  border-color: v.$color-border-strong;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: v.$color-text;
+  }
+}
+
+.btn-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: v.$radius-pill;
+  background: rgba(11, 14, 22, 0.7);
+  color: v.$color-text-soft;
+  border: 1px solid v.$color-border-strong;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background-color v.$transition-fast, color v.$transition-fast,
+    transform v.$transition-fast;
+
+  &:hover {
+    background: rgba(11, 14, 22, 0.9);
+    color: v.$color-text;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+.btn-fav.is-active {
+  background: v.$color-portal;
+  color: #08130b;
+  border-color: v.$color-portal;
+  animation: pulse-glow 1s ease;
+}
+
+// Selector de vista (Todos / Favoritos)
+.view-selector {
+  display: flex;
+  gap: v.$space-3;
+  margin: v.$space-5 0;
+  padding: 0 v.$space-4;
+  justify-content: center;
+}
+
+.btn--view {
+  background: v.$color-surface;
+  color: v.$color-text-muted;
+  border-color: v.$color-border-strong;
+  padding: v.$space-2 v.$space-4;
+  font-size: 0.95rem;
+  transition: all v.$transition-base;
+
+  &:hover {
+    background: v.$color-surface-hi;
+    color: v.$color-text;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, v.$color-portal 0%, v.$color-portal-dark 100%);
+    color: #08130b;
+    border-color: v.$color-portal;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,7 @@
+@use '../abstracts/variables' as v;
+
+.page--characters {
+  .page__status {
+    min-height: 1.5rem;
+  }
+}

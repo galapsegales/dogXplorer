@@ -1,0 +1,262 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  @include m.card-surface;
+  transition: transform v.$transition-base, box-shadow v.$transition-base,
+    border-color v.$transition-base;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: #f9cdcd;
+    box-shadow: v.$shadow-lg;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+    outline-offset: 4px;
+  }
+}
+
+.card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: v.$color-surface;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform v.$transition-base;
+  }
+
+  .card:hover & img {
+    transform: scale(1.04);
+  }
+}
+
+.card__image-fallback {
+  position: absolute;
+  inset: 0;
+  place-items: center;
+  padding: v.$space-4;
+  color: v.$color-text-muted;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.card__image-fallback:not([hidden]) {
+  display: grid;
+}
+
+.card__media .btn-icon {
+  position: absolute;
+  top: v.$space-3;
+  right: v.$space-3;
+}
+
+// Botón de favoritos (estrella)
+.card__favorite {
+  position: absolute;
+  top: v.$space-3;
+  right: v.$space-3;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: v.$color-text-muted;
+  cursor: pointer;
+  transition: all v.$transition-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #ffc107;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // Cuando está marcado como favorito
+  &--active {
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+  }
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+  padding: v.$space-4 v.$space-5 v.$space-5;
+}
+
+.card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: v.$color-text;
+  @include m.clamp-lines(1);
+}
+
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  color: v.$color-text-muted;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.card__list {
+  display: grid;
+  gap: v.$space-2;
+  font-size: 0.875rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: v.$space-3;
+    border-bottom: 1px dashed v.$color-border;
+    padding-bottom: v.$space-2;
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  dt {
+    color: v.$color-text-muted;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    align-self: center;
+  }
+
+  dd {
+    color: v.$color-text-soft;
+    text-align: right;
+    margin: 0;
+    max-width: 60%;
+    @include m.clamp-lines(1);
+  }
+}
+
+.card__actions {
+  display: flex;
+  justify-content: stretch;
+  margin-top: auto;
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.episode-card {
+  &__code {
+    align-self: flex-start;
+    margin: v.$space-4 v.$space-5 0;
+    padding: v.$space-1 v.$space-3;
+    border-radius: v.$radius-pill;
+    background: rgba(34, 211, 238, 0.12);
+    color: v.$color-cyan;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+.status-dot {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999px;
+  background: v.$color-unknown;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+
+  &--alive {
+    background: v.$color-alive;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.18);
+  }
+  &--dead {
+    background: v.$color-dead;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.18);
+  }
+  &--unknown {
+    background: v.$color-unknown;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: v.$space-1 v.$space-3;
+  background: rgba(139, 92, 246, 0.14);
+  color: #c4b5fd;
+  border-radius: v.$radius-pill;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.mini-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-3;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  text-align: center;
+  cursor: pointer;
+  transition: transform v.$transition-fast, border-color v.$transition-fast,
+    background-color v.$transition-fast;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 999px;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 0.85rem;
+    color: v.$color-text-soft;
+    @include m.clamp-lines(2);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(195, 132, 201, 0.45);
+    background: v.$color-surface-hi;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}

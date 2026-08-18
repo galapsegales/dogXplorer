@@ -1,0 +1,7 @@
+@use '../abstracts/variables' as v;
+
+.page--favorites {
+  .page__empty {
+    padding: v.$space-8 0;
+  }
+}

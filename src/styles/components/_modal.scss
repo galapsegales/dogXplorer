@@ -1,0 +1,240 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.modal-root {
+  &[aria-hidden='true'] {
+    display: none;
+  }
+}
+
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-modal;
+  display: grid;
+  place-items: center;
+  padding: v.$space-4;
+  background: rgba(2, 4, 10, 0.7);
+  backdrop-filter: blur(4px);
+  animation: fade-in v.$transition-fast both;
+}
+
+.modal__dialog {
+  width: min(60rem, 100%);
+  max-height: min(92vh, 60rem);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, v.$color-bg-elev 0%, v.$color-surface 100%);
+  border: 1px solid v.$color-border-strong;
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-lg;
+  outline: none;
+  overflow: hidden;
+  animation: scale-in v.$transition-base both;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-3;
+  padding: v.$space-4 v.$space-5;
+  border-bottom: 1px solid v.$color-border;
+}
+
+.modal__title {
+  font-size: 1.25rem;
+  margin: 0;
+  color: v.$color-text;
+}
+
+.modal__close {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: v.$color-text-soft;
+  transition: background-color v.$transition-fast, color v.$transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: v.$color-text;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+.modal__body {
+  padding: v.$space-5;
+  overflow: auto;
+}
+
+.character-detail {
+  display: grid;
+  gap: v.$space-6;
+
+  @include m.breakpoint(tablet) {
+    grid-template-columns: 260px 1fr;
+    align-items: start;
+  }
+}
+
+.character-detail__media {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+
+  img {
+    width: 100%;
+    border-radius: v.$radius-lg;
+    border: 1px solid v.$color-border;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+}
+
+.character-detail__actions {
+  display: flex;
+  gap: v.$space-2;
+
+  .btn {
+    flex: 1;
+  }
+}
+
+.character-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-4;
+}
+
+.character-detail__name {
+  margin: 0;
+  font-size: 1.5rem;
+  color: v.$color-text;
+}
+
+.character-detail__status {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  color: v.$color-text-soft;
+  margin: 0;
+}
+
+.character-detail__list {
+  display: grid;
+  gap: v.$space-2;
+}
+
+.character-detail__row {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: v.$space-3;
+  padding: v.$space-2 0;
+  border-bottom: 1px dashed v.$color-border;
+
+  dt {
+    color: v.$color-text-muted;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  dd {
+    color: v.$color-text-soft;
+    margin: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.character-detail__episodes h4 {
+  margin-bottom: v.$space-3;
+}
+
+.episodes-list {
+  display: grid;
+  gap: v.$space-2;
+  max-height: 18rem;
+  overflow: auto;
+  padding-right: v.$space-2;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 5rem 1fr auto;
+    gap: v.$space-3;
+    padding: v.$space-2 v.$space-3;
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    font-size: 0.9rem;
+  }
+
+  &__code {
+    color: v.$color-cyan;
+    font-weight: 700;
+  }
+
+  &__name {
+    color: v.$color-text;
+    @include m.clamp-lines(1);
+  }
+
+  &__date {
+    color: v.$color-text-muted;
+    font-size: 0.8rem;
+  }
+
+  &__loading,
+  &__empty,
+  &__error {
+    color: v.$color-text-muted;
+    font-size: 0.9rem;
+    padding: v.$space-2;
+  }
+}
+
+.episode-detail {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-5;
+}
+
+.episode-detail__head {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+}
+
+.episode-detail__code {
+  align-self: flex-start;
+  padding: v.$space-1 v.$space-3;
+  border-radius: v.$radius-pill;
+  background: rgba(34, 211, 238, 0.14);
+  color: v.$color-cyan;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.episode-detail__name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.episode-detail__meta {
+  margin: 0;
+  color: v.$color-text-muted;
+}
+
+.episode-detail__characters h4 {
+  margin-bottom: v.$space-3;
+}

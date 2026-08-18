@@ -1,5 +1,82 @@
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
 
 /* Header */
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
 
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: v.$z-header;
+  background: rgba(11, 14, 22, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid v.$color-border;
+}
+
+.site-header__inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: v.$space-4;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+  align-items: center;
+
+  @include m.breakpoint(tablet) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: v.$space-4 v.$space-6;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-3;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+
+  &__mark {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(151, 206, 76, 0.55));
+    transition: filter v.$transition-base;
+  }
+
+  &:hover &__mark {
+    filter: drop-shadow(0 0 10px rgba(151, 206, 76, 0.8));
+  }
+
+  em {
+    color: v.$color-portal;
+    font-style: normal;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+    border-radius: v.$radius-md;
+  }
+}
+
+.site-footer {
+  margin-top: v.$space-12;
+  padding: v.$space-6 v.$space-4;
+  text-align: center;
+  color: v.$color-text-muted;
+  font-size: 0.875rem;
+  border-top: 1px solid v.$color-border;
+
+  a {
+    color: v.$color-portal;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: v.$color-portal-strong;
+    }
+  }
+}

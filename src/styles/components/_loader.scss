@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as v;
+
+.loader {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-3;
+  padding: v.$space-3 v.$space-4;
+  color: v.$color-text-soft;
+  font-size: 0.95rem;
+}
+
+.loader__spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(151, 206, 76, 0.25);
+  border-top-color: v.$color-portal;
+  border-radius: 999px;
+  animation: spin 0.8s linear infinite;
+}

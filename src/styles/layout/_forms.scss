@@ -1,0 +1,101 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.input {
+  width: 100%;
+  padding: v.$space-3 v.$space-4;
+  background: v.$color-surface;
+  color: v.$color-text;
+  border: 1px solid v.$color-border-strong;
+  border-radius: v.$radius-md;
+  font-size: 1rem;
+  transition: border-color v.$transition-fast, box-shadow v.$transition-fast,
+    background-color v.$transition-fast;
+
+  &::placeholder {
+    color: v.$color-text-muted;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: v.$color-portal;
+    box-shadow: 0 0 0 3px rgba(151, 206, 76, 0.25);
+    background: v.$color-surface-hi;
+  }
+}
+
+select.input {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, v.$color-text-muted 50%),
+    linear-gradient(135deg, v.$color-text-muted 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
+.filters {
+  display: grid;
+  gap: v.$space-4;
+  padding: v.$space-5;
+  @include m.card-surface;
+
+  @include m.breakpoint(tablet) {
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: end;
+  }
+}
+
+.filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+}
+
+.filters__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: v.$color-text-muted;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.filters__actions {
+  display: flex;
+  align-items: stretch;
+  gap: v.$space-2;
+
+  .btn {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .filters {
+    display: flex;
+    flex-direction: column;
+    padding: v.$space-4;
+  }
+
+  .filters__field,
+  .filters__actions {
+    grid-column: 1 / -1;
+  }
+
+  .input {
+    min-width: 0;
+    min-height: 3rem;
+    font-size: 1rem;
+  }
+
+  .filters__actions .btn {
+    width: 100%;
+    white-space: normal;
+  }
+}

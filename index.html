@@ -3,20 +3,58 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>WRITE TITLE HERE</title>
-    <meta name="description" content="Write description for SEO" />
+    <title>THE DOG EXPLORER</title>
+    <meta name="description" content="THE DOG ULTIMATE EXPLORER by Gala" />
     <meta name="author" content="Gala P Segales" />
 
   <!-- FAVICON OPTIONS -->
-    
+    <link rel="icon" type="image/png" href="/src/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/src/img/favicon.svg" />
+    <link rel="shortcut icon" href="/src/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/img/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="DOGXPLORER" />
+    <link rel="manifest" href="/src/img/site.webmanifest" />
 
     <link rel="stylesheet" href="./src/styles/main.scss" />
 
   </head>
 
   <body>
-    
-    <script type="module" src="./src/main.js"></script>
-    
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="site-header" role="banner">
+      <div class="site-header__inner">
+        <a href="#/characters" class="brand" aria-label="DOGXPLORER — Inicio">
+          <img class="brand__mark" src="./src/img/favicon.svg" alt="" aria-hidden="true" width="36" height="36" />
+          <span class="brand__text">DOG<em>XPLORER</em></span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navegación principal">
+          <ul class="main-nav__list">
+            <li><a class="main-nav__link" href="#/dogs" data-route="dogs">Perros</a></li>
+            <li>
+              <a class="main-nav__link" href="#/favorites" data-route="favorites">
+                Favoritos
+                <span class="badge" id="favorites-count" aria-label="Perros en favoritos">0</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="app" role="main">
+      <div id="view-root" class="view-root"></div>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Proyecto hecho por Gala P. Segalés.
+      </p>
+    </footer>
+
+    <div id="modal-root" class="modal-root" aria-hidden="true"></div>
+
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -1,1 +1,40 @@
 /* Default theme */
+@use '../abstracts/variables' as v;
+
+html {
+  font-family: v.$primary-font;
+  background: v.$color-bg;
+  color: v.$color-text;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(151, 206, 76, 0.12), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+    linear-gradient(180deg, v.$color-bg 0%, #070912 100%);
+  background-attachment: fixed;
+}
+
+body.is-modal-open {
+  overflow: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  padding: v.$space-2 v.$space-4;
+  background: v.$color-portal;
+  color: #08130b;
+  font-weight: 700;
+  border-radius: v.$radius-sm;
+  z-index: 999;
+  transition: top v.$transition-base;
+
+  &:focus {
+    top: 1rem;
+  }
+}

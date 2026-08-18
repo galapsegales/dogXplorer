@@ -1,1 +1,51 @@
 /* Typography */
+@use '../abstracts/variables' as v;
+
+body {
+  font-family: v.$primary-font;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: v.$color-text;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: v.$color-text;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 1.875rem);
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+h4 {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: v.$color-text-soft;
+}
+
+p {
+  color: v.$color-text-soft;
+}
+
+em {
+  color: v.$color-portal;
+  font-style: normal;
+}
+
+a:focus-visible {
+  outline-color: v.$color-portal;
+}
