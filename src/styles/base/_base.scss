@@ -1,0 +1,15 @@
+@use '../abstracts/variables' as *;
+/* Base styles */
+* {
+    font-size: 16px;
+    font-family: $font-stack;
+    
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}

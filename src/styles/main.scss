@@ -1,0 +1,21 @@
+/* main.scss — entry for 7-1 architecture using @use only */
+
+@use './abstracts/variables' as *;
+@use './abstracts/mixins' as *;
+
+@use './base/reset';
+@use './base/base';
+@use './base/typography';
+
+@use './layout/container';
+@use './layout/header';
+@use './layout/hero';
+@use './layout/footer';
+
+@use './components/buttons';
+
+@use './pages/home';
+
+@use './themes/default';
+
+@use './vendors/vendors';
